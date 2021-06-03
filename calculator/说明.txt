@@ -1,0 +1,15 @@
+flag=1   sin                                                  
+flag=2   cos
+flag=3   lg
+flag=4   e^x
+flag=5   反比例函数a/x=b         
+flag=6 一元二次方程	                
+flag=7 一元一次方程                  
+flag=8 二进制                            
+flag=9 八进制                         
+flag=10 十进制                           
+flag=11 十六进制                     
+flag=12 比较两个数大小               
+flag=13 最大公约数
+flag=14 最小公倍数
+flag=15 a^b                                  

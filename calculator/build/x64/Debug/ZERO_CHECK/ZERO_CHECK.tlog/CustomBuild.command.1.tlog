@@ -1,0 +1,10 @@
+^C:\USERS\ADMINISTRATOR\DESKTOP\CALCULATOR\BUILD\CMAKEFILES\1E00BAAC675EBAA0B9CEA6AFB6451AD2\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/Administrator/Desktop/calculator -BC:/Users/Administrator/Desktop/calculator/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file C:/Users/Administrator/Desktop/calculator/build/TEST_CALCULATOR.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

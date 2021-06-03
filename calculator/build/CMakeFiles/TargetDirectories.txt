@@ -1,0 +1,3 @@
+C:/Users/Administrator/Desktop/calculator/build/CMakeFiles/TEST_CALCULATOR.dir
+C:/Users/Administrator/Desktop/calculator/build/CMakeFiles/ALL_BUILD.dir
+C:/Users/Administrator/Desktop/calculator/build/CMakeFiles/ZERO_CHECK.dir

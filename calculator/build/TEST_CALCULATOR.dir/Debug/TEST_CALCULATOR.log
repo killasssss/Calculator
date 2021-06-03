@@ -1,0 +1,4 @@
+﻿  UI.cpp
+C:\Users\Administrator\Desktop\calculator\src\ui\UI.cpp(344,9): warning C4101: “Y”: 未引用的局部变量
+C:\Users\Administrator\Desktop\calculator\src\ui\UI.cpp(348): warning C4700: 使用了未初始化的局部变量“ten”
+  TEST_CALCULATOR.vcxproj -> C:\Users\Administrator\Desktop\calculator\bin\Debug\TEST_CALCULATOR.exe
