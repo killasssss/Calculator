@@ -49,7 +49,9 @@ UI::UI(QWidget* parent):QDialog(parent) //构造函数
 			font.setPointSize(12);//字体大小
 			button->setFont(font);//设置
 			pannelLayout->addWidget(button, i, j);
-			connect(button, &QPushButton::clicked, [=]() ->void{onKeyButtonClicked(i, j); });//connect函数连接按钮响应的函数 格式为 按钮，动作，函数
+			
+			//下面这行极其关键，将按钮的动作与自定义的按钮响应函数连接，使按钮坐标作为输入量传入函数按钮响应函数（ int row, int column）
+			connect(button, &QPushButton::clicked, [=]() ->void{onKeyButtonClicked(i, j); });//connect函数连接按钮响应的函数 格式为: 按钮，动作，函数
 		}                                           //用lambda语法来响应 [](输入的参数)->返回类型{函数}
 	}												//此处变量捕获列表为[=]按值捕获变量i,j
 	pannelLayout->setMargin(0);//设置控件与窗体的左右边距
