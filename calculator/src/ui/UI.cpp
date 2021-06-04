@@ -8,6 +8,7 @@
 #include<QFont>
 #include<string>
 #include"math.h"
+//UI.cpp 分为 初始界面设置 与 按钮响应设置
 //===================初始界面设置==================================================================
 UI::UI(QWidget* parent):QDialog(parent) //构造函数
 {
@@ -431,15 +432,15 @@ void UI::onKeyButtonClicked(int row, int column)//按钮响应的函数
 		}    
 		else if (flag == 12)//compare 
 		{
-		int a, b;
-		std::string str;
-		str = Text1.toStdString();
-		std::string first(str,0, 1);
+			int a, b;
+			std::string str;
+			str = Text1.toStdString();
+			std::string first(str,0, 1);
 
-		std::string s(str, 1, str.length() - 1);
-		Text1 = QString::fromStdString(s);
-		//QString B = "B", O = "O", D = "D", H = "H";
-		bool Y;
+			std::string s(str, 1, str.length() - 1);
+			Text1 = QString::fromStdString(s);
+			//QString B = "B", O = "O", D = "D", H = "H";
+			bool Y;
 			if (first == "B")
 			{
 				a=Text1.toInt(&Y, 2);
@@ -477,92 +478,90 @@ void UI::onKeyButtonClicked(int row, int column)//按钮响应的函数
 			{
 				b=Text2.toInt(&Y, 16);
 			}
-		if (a > b) 
-		{
-			Text = "input 1 > input 2";
-		}
-		else if (a == b)
-		{
-			Text = "input 1 = input 2";
-		}
-		else
-		{
-			Text = "input 1 < input 2";
-		}
-		pText->setText(Text);//返回新的文本
+			if (a > b) 
+			{
+				Text = "input 1 > input 2";
+			}
+			else if (a == b)
+			{
+				Text = "input 1 = input 2";
+			}
+			else
+			{
+				Text = "input 1 < input 2";
+			}
+			pText->setText(Text);//返回新的文本
 		}     
 
 
 		else if (flag == 13)//求最大公约数
 		{
-		Text = "greatest common divisor:  ";//输出
-		Text1 = pText1->text();//获得输入框1和2内的内容
-		Text2 = pText2->text();
+			Text = "greatest common divisor:  ";//输出
+			Text1 = pText1->text();//获得输入框1和2内的内容
+			Text2 = pText2->text();
 
-		int a, b;
-		std::string str1, str2;
-		std::tie(a, str1) = parseExpression(Text1.toLatin1().data());
-		std::tie(b, str2) = parseExpression(Text2.toLatin1().data());
-		////////////////////////////此处为求最大公约数的函数代码，因调用求最大公约数函数一直报错
+			int a, b;
+			std::string str1, str2;
+			std::tie(a, str1) = parseExpression(Text1.toLatin1().data());
+			std::tie(b, str2) = parseExpression(Text2.toLatin1().data());
+		////////////////////////////此处为求最大公约数的函数代码，因调用求最大公约数函数一直报错////////
 		////////////////////////////将函数代码直接写在了按钮响应函数内部,实在是无可奈何之举，有待改进///
-		int min, max,result;
-		int r;
-		max = a > b ? a : b;
-		min = a < b ? a : b;
-		if (max % min == 0)
-			result = min;
-		else
-		{
-			while (max % min != 0)
+			int min, max,result;
+			int r;
+			max = a > b ? a : b;
+			min = a < b ? a : b;
+			if (max % min == 0)
+				result = min;
+			else
 			{
-				r = max % min;
-				max = min;
-				min = r;
+				while (max % min != 0)
+				{
+					r = max % min;
+					max = min;
+					min = r;
+				}
+					result = min;
 			}
-			result = min;
-		}
-		QString temp;
-		temp = QString::number(result);//int变成QString
-		Text += temp;//在现有文本基础上添加刚才按的按钮的内容
-		pText->setText(Text);//返回新的文本
+			
+			QString temp;
+			temp = QString::number(result);//int变成QString
+			Text += temp;//在现有文本基础上添加刚才按的按钮的内容
+			pText->setText(Text);//返回新的文本
 		}
 
-		else if (flag == 14)
+		else if (flag == 14)//求最小公倍数
 		{
-		Text = "least common multiple:  ";//输出  "least common multiple:   "
-		Text1 = pText1->text();//获得输入框1和2内的内容
-		Text2 = pText2->text();
+			Text = "least common multiple:  ";//输出  "least common multiple:   "
+			Text1 = pText1->text();//获得输入框1和2内的内容
+			Text2 = pText2->text();
 
-		int a, b;
-		std::string str1, str2;
-		std::tie(a, str1) = parseExpression(Text1.toLatin1().data());
-		std::tie(b, str2) = parseExpression(Text2.toLatin1().data());
-		////////////////////////////此处为求最小公倍数的函数代码，因调用求最小公倍数函数一直报错
+			int a, b;
+			std::string str1, str2;
+			std::tie(a, str1) = parseExpression(Text1.toLatin1().data());
+			std::tie(b, str2) = parseExpression(Text2.toLatin1().data());
+		////////////////////////////此处为求最小公倍数的函数代码，因调用求最小公倍数函数一直报错////////
 		////////////////////////////将函数代码直接写在了按钮响应函数内部,实在是无可奈何之举，有待改进///
-		int min, max, r, result;
-		max = a > b ? a : b;
-		min = a < b ? a : b;
-		if (max % min == 0)
-			result = max;
-		else
-		{
-			while (max % min != 0)
+			int min, max, r, result;
+			max = a > b ? a : b;
+			min = a < b ? a : b;
+			if (max % min == 0)
+				result = max;
+			else
 			{
-				r = max % min;
-				max = min;
-				min = r;
+				while (max % min != 0)
+				{
+					r = max % min;
+					max = min;
+					min = r;
+				}
+				result = a * b / min;
 			}
-			result = a * b / min;
+		
+			QString temp;
+			temp = QString::number(result);//int变成QString
+			Text += temp;//在现有文本基础上添加刚才按的按钮的内容
+			pText->setText(Text);//返回新的文本
 		}
-		///////////////////////////////////////////////////////////////
-		QString temp;
-		temp = QString::number(result);//int变成QString
-		Text += temp;//在现有文本基础上添加刚才按的按钮的内容
-		pText->setText(Text);//返回新的文本
-		}//求最小公倍数
-
-
-
 
 
 		else if (flag == 15)//a^b
@@ -585,34 +584,13 @@ void UI::onKeyButtonClicked(int row, int column)//按钮响应的函数
 			Text += temp;//在现有文本基础上添加刚才按的按钮的内容
 			pText->setText(Text);//返回新的文本
 		}
-	}
+	}//等号的响应的定义到此结束
+
 	else//输入四则运算表达式
 	{
 		Text += buttons[row][column];//在现有文本基础上添加刚才按的按钮的内容
 		pText->setText(Text);//返回新的文本
 	}
 	
-	
-	//std::string str = buttons[row][column].toLatin1().data();//QString转换成c++的string类型
-	//std::cout << str.c_str();//输出按钮的值
 }
 
-
-
-
-int UI::MaxDivisor(int a, int b)//求最大公约数
-{
-	int min, max;
-	int r;
-	max = a > b ? a : b;
-	min = a < b ? a : b;
-	if (max % min == 0)
-		return min;
-	while (max % min != 0)
-	{
-		r = max % min;
-		max = min;
-		min = r;
-	}
-	return min;
-}

@@ -15,9 +15,10 @@ enum class TokenType //枚举类型
 
 };
 
-struct Token
+struct Token //定义一个Token的数据类型来统一 装符号（包括数值），
 {
 	TokenType type;//字符类型 
-	double value = 0.0;//如果是数字存值 
+	double value;  //如果是数字，存值 
 };
+
 std::tuple<Token, std::string> tokenize(std::string input);

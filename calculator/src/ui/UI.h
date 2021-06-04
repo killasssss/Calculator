@@ -24,10 +24,8 @@ private:
 	
 	
 public:
-	UI(QWidget* parent = nullptr);//构造函数	
-	
-	int MaxDivisor(int a, int b);//求最大公约数
-	
+	UI(QWidget* parent = nullptr);//构造函数
+
 }; 
 
 
