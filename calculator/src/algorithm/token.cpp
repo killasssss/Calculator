@@ -8,14 +8,14 @@ std::tuple<double, std::string> parseNumber(std::string input) //用来tokenize�
 {
 	std::string tempStr;
 	char ch;
-	while (1)//将若干个数字字符以及小数点组合成一个值
+	while (1)//遇到 若干个数字字符以及小数点 可以组合成一个值
 	{
 		if (input.empty())//刚好是表达式最后的数字时，存完后结束
 		{
 			break;
 		}
 
-		ch = input.front();//读取第一个字符
+		ch = input.front();
 		if ((ch >= '0' && ch <= '9') || (ch == '.'))
 		{
 			tempStr.push_back(ch);//把数字部分放进字符串tempStr，每个ch放在字符串尾
@@ -32,13 +32,13 @@ std::tuple<double, std::string> parseNumber(std::string input) //用来tokenize�
 
 
 
-std::tuple<Token, std::string> tokenize(std::string input)//翻译接受到的四则运算表达式。获取字符串首的数值或者四则运算中的运算符，并以Token结构体的方式返回
+std::tuple<Token, std::string> tokenize(std::string input)
 {
 	char ch;
 	Token tk;
 
 
-	do//第1步   先去掉开头空格 
+	do//去掉开头空格 
 	{
 		if (input.empty())//如果input是空串
 		{
@@ -47,14 +47,14 @@ std::tuple<Token, std::string> tokenize(std::string input)//翻译接受到的�
 		}
 		else
 		{
-			ch = input.front();        //取出首字符到ch
-			input.erase(input.begin());//删除首字符  begin取的是地址，front取的是内容
+			ch = input.front();        //取出首字符
+			input.erase(input.begin());//去除首字符 
 		}
 	} 	 while (ch == ' ');//只要还有空格就继续循环
 	
-	// 修改时间5/25  错误点：注意最后一次时，表达式的第一个字符在ch里，在input中已经被删除!!! 所以直接用ch，不要再取一次，否则就丢失了数据
+	//修改5/25   !!!!!注意最后一次时，表达式的第一个字符在ch里，在input中已经被删除!!! 
 
-	switch (ch) //第2步   判断符号类型
+	switch (ch) //判断符号类型
 	{
 	case '+':
 	case '-':

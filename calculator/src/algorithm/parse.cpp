@@ -2,15 +2,15 @@
 #include"token.h"
 #include<iostream>
 #include<string.h>
-//E为表达式，在加减层面      T为项，在乘除层面     F为元素，是数值或者（E）
-//E->TR   R-> +T R | -T R | NULL  表达式E由n个项加减组成，将其分成 当前值 与 R(剩余若干个 加减T)
-//T->FR   R-> *F R | /F R | NULL  表达式T由n个元素乘除组成，将其分成 当前值 与 R(剩余若干个 乘除F)
+//E为表达式，在加减层面      T为项，在乘除层面     F为
+//E->TR   R-> +T R | -T R | NULL  表达式E由n个数加减组成，将其分成 当前值 与 R(剩余若干个 加减T)
+//T->FR   R-> *F R | /F R | NULL
 
       
 
 
 
- static std::tuple<double, std::string> parseFactor(std::string input)//解析F， F为元素，是数值或者（E）
+ static std::tuple<double, std::string> parseFactor(std::string input)
 {
 	//F->number|(E)
 	double result;
@@ -46,7 +46,7 @@
 
 
 
- static std::tuple<double, std::string> parseTerm(std::string input)//解析T，T->FR   R-> *F R | /F R | NULL
+ static std::tuple<double, std::string> parseTerm(std::string input)
  {
 	 double result;
 	 //第1步  翻译T->FR中的F
@@ -90,17 +90,17 @@
 
 
 
- std::tuple<double, std::string> parseExpression(std::string input)    //解析E，E->TR   R-> +T R | -T R | NULL
+ std::tuple<double, std::string> parseExpression(std::string input)    //解析表达式
  {
 	 double result;
-	 
+	 //翻译E->TR中的T
 	 //////6月2日修改，发现无法处理以“-”开头的表达式
 	 std:: string first;
 	 first.assign(input, 0, 1); 
 	 if (first == "-") { input.insert(0, "0"); };//如果表达式以“-”开头，则在表达式的首位补上0；
 	 
 
-	 std::tie(result, input) = parseTerm(input);//第1步  翻译E->TR中的T，即解析表达式的第一个数值，result存取数值，input存取剩余表达式
+	 std::tie(result, input) = parseTerm(input);//第1步  翻译E->TR中的T，即解析表达式的第一个数值，result存取数值，input存取属于表达式
 
 	 //第2步  翻译E->TR中的R    （此时 R为剩余的n个+T 或 -T）
 	 bool flag = true;

@@ -49,9 +49,7 @@ UI::UI(QWidget* parent):QDialog(parent) //构造函数
 			font.setPointSize(12);//字体大小
 			button->setFont(font);//设置
 			pannelLayout->addWidget(button, i, j);
-			
-			//下面这行极其关键，将按钮的动作与自定义的按钮响应函数连接，使按钮坐标作为输入量传入函数按钮响应函数（ int row, int column）
-			connect(button, &QPushButton::clicked, [=]() ->void{onKeyButtonClicked(i, j); });//connect函数连接按钮响应的函数 格式为: 按钮，动作，函数
+			connect(button, &QPushButton::clicked, [=]() ->void{onKeyButtonClicked(i, j); });//connect函数连接按钮响应的函数 格式为 按钮，动作，函数
 		}                                           //用lambda语法来响应 [](输入的参数)->返回类型{函数}
 	}												//此处变量捕获列表为[=]按值捕获变量i,j
 	pannelLayout->setMargin(0);//设置控件与窗体的左右边距
@@ -210,7 +208,8 @@ void UI::onKeyButtonClicked(int row, int column)//按钮响应的函数
 			double result;
 			std::string str;
 			std::tie(result, str) = parseExpression(Text.toLatin1().data());
-			Text = QString::number(result);//double变成QString
+			Text += " = ";
+			Text += QString::number(result);//double变成QString
 			pText->setText(Text);//返回新的文本
 		}
 		else if(flag==1)//sin()
@@ -221,7 +220,8 @@ void UI::onKeyButtonClicked(int row, int column)//按钮响应的函数
 			std::string str;
 			std::tie(result, str) = parseExpression(E.toLatin1().data());//计算出sin（E）中的E的值
 			result = sin(result);//计算sin（E）的值
-			Text = QString::number(result);//double变成QString
+			Text += " = ";
+			Text += QString::number(result);//double变成QString
 			pText->setText(Text);//返回新的文本
 			flag = 0;//flag归零;
 		}
@@ -233,7 +233,8 @@ void UI::onKeyButtonClicked(int row, int column)//按钮响应的函数
 			std::string str;
 			std::tie(result, str) = parseExpression(E.toLatin1().data());//计算出cos（E）中的E的值
 			result = cos(result);//计算cos（E）的值
-			Text = QString::number(result);//double变成QString
+			Text += " = ";
+			Text += QString::number(result);//double变成QString
 			pText->setText(Text);//返回新的文本
 			flag = 0;//flag归零;
 		}
@@ -245,7 +246,8 @@ void UI::onKeyButtonClicked(int row, int column)//按钮响应的函数
 			std::string str;
 			std::tie(result, str) = parseExpression(E.toLatin1().data());//计算出ln（E）中的E的值
 			result = log(result);//计算ln（E）的值
-			Text = QString::number(result);//double变成QString
+			Text += " = ";
+			Text += QString::number(result);//double变成QString
 			pText->setText(Text);//返回新的文本
 			flag = 0;//flag归零;
 		}
@@ -257,7 +259,8 @@ void UI::onKeyButtonClicked(int row, int column)//按钮响应的函数
 			std::string str;
 			std::tie(result, str) = parseExpression(E.toLatin1().data());//计算出e^（E）中的E的值
 			result = exp(result);//计算e^（E）的值
-			Text = QString::number(result);//double变成QString
+			Text += " = ";
+			Text += QString::number(result);//double变成QString
 			pText->setText(Text);//返回新的文本
 			flag = 0;//flag归零;
 		}
@@ -345,7 +348,7 @@ void UI::onKeyButtonClicked(int row, int column)//按钮响应的函数
 		else if (flag == 8)  //二进制转其他
 		{
 			bool Y;
-			int ten;
+			int ten = Text1.toInt(&Y, 2);;
 
 			Text = "B: ";
 			QString temp = QString::number(ten, 2); //常整形转换为Qstring形
